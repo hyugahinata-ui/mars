@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Марс — Безопасный чат</title>
+    <style>
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 40px; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 380px; }
+        .hidden { display: none !important; }
+        input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #4a90e2; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .mode-banner { padding: 8px; text-align: center; border-radius: 6px; margin: 10px 0; font-weight: bold; font-size: 14px; }
+        .mode-public { background: #e3f2fd; color: #0d47a1; }
+        .mode-private { background: #fff3e0; color: #e65100; }
+        #messages { height: 250px; overflow-y: auto; border: 1px solid #eee; padding: 10px; margin: 10px 0; border-radius: 6px; }
+        .msg { background: #f1f0f0; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; }
+        .msg-author { font-size: 11px; color: #4a90e2; font-weight: bold; display: block; }
+        .admin-panel { background: #f8f9fa; border: 1px dashed #4a90e2; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="card" id="auth-container">
+    <h2>Марс 🚀</h2>
+    <input type="email" id="email" placeholder="Email (например: neji@hyuga.com)">
+    <input type="password" id="password" placeholder="Пароль">
+    <button id="email-login-btn">Войти / Регистрация</button>
+</div>
+
+<div class="card hidden" id="chat-container">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span id="user-email" style="font-size: 12px; font-weight: bold;"></span>
+        <button id="logout-btn" style="width: auto; padding: 5px 10px; background: #888;">Выйти</button>
+    </div>
+
+    <!-- Панель управления (видима только для создателя) -->
+    <div id="admin-panel" class="admin-panel hidden">
+        <div style="font-size: 12px; font-weight: bold; margin-bottom: 5px;">👑 Панель Создателя:</div>
+        <button id="toggle-mode-btn" style="background: #2e7d32;">Переключить режим чата</button>
+    </div>
+
+    <!-- Индикатор текущего режима -->
+    <div id="mode-banner" class="mode-banner mode-public">Загрузка режима...</div>
+
+    <div id="messages"></div>
+
+    <div style="display: flex; gap: 5px;">
+        <input type="text" id="message-input" placeholder="Введите сообщение...">
+        <button id="send-btn" style="width: 100px;">Отправить</button>
+    </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
