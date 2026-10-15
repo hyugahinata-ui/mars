@@ -33,8 +33,11 @@ const modeBanner = document.getElementById('mode-banner');
 let currentMode = "public"; // По умолчанию общий
 let currentUser = null;
 
-// Укажите ваш Email Создателя
-const ADMIN_EMAIL = "neji@hyuga.com";
+// Список почт администраторов с правами Создателя
+const adminEmails = [
+  "neji@hyuga.com",
+  "hemide.qurbanli1989@gmail.com"
+];
 
 // Авторизация
 emailLoginBtn.addEventListener('click', async () => {
@@ -64,12 +67,11 @@ onAuthStateChanged(auth, (user) => {
         userEmailSpan.textContent = user.email;
 
         // Показываем панель только вам!
-        if (user.email === ADMIN_EMAIL) {
-            adminPanel.classList.remove('hidden');
-        } else {
-            adminPanel.classList.add('hidden');
-        }
-
+       if (adminEmails.includes(user.email)) {
+        adminPanel.classList.remove('hidden');
+    } else {
+        adminPanel.classList.add('hidden');
+    }
         listenToSettings();
     } else {
         authContainer.classList.remove('hidden');
